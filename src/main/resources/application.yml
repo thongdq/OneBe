@@ -1,0 +1,5 @@
+spring:
+  common:
+    greeting: "Hello"
+
+message: "INVALID!"

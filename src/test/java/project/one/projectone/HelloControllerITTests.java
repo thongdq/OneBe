@@ -17,7 +17,7 @@ public class HelloControllerITTests {
     @Test
     public void getHello() {
         ResponseEntity<String> response = template.getForEntity("/", String.class);
-        assertThat(response.getBody()).isEqualTo("Greetings from DQT~!");
+        assertThat(response.getBody()).isEqualTo("Greetings from DQT");
     }
 
 }
