@@ -1,2 +1,32 @@
-message: "Prod environment"
-warning: "Prod warning"
+spring:
+  datasource:
+    url: "INVALID!"
+    username: "INVALID!"
+    password: "INVALID!"
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: "INVALID!"
+        dialect: "INVALID!"
+    hibernate:
+      ddl-auto: "INVALID!"
+  liquibase:
+    change-log: "classpath:INVALID!"
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: "INVALID!"
+        type:
+          descriptor:
+            sql:
+              BasicBinder: "INVALID!"
+
+# App Properties
+onebe:
+  app:
+    jwtSecret: "INVALID!"
+    jwtExpirationMs: "INVALID!"

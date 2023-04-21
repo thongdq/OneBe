@@ -3,6 +3,7 @@ pipeline {
 
     tools {
         jdk 'kdj17'
+        maven 'jenkin-maven'
     }
 
     stages {
