@@ -1,5 +1,7 @@
 databaseChangeLog:
   - include:
       file: db\changelog\create-user-role-userRoles.xml
+  - include:
       file: db\changelog\create-refresh-tokens-table.xml
+  - include:
       file: db\changelog\alter-expirydate-refresh-tokens-table.xml

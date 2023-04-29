@@ -13,4 +13,6 @@ java -Dspring.profiles.active=foo -jar profiles-0.0.1-SNAPSHOT.jar
 maven cmd
 mvn spring-boot:run -Dspring-boot.run.profiles=dev,prod
 
+Docker with profile https://www.baeldung.com/spring-boot-docker-start-with-profile
+
 ---
