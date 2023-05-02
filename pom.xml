@@ -97,6 +97,8 @@
                     <profile>dev</profile>
                     <profile>prod</profile>
                     <profile>docker</profile>
+                    <profile>k8s</profile>
+
                 </profiles>
                 </configuration>
             </plugin>

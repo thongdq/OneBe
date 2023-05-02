@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.pg.name }}
+  labels:
+    app: {{ .Values.service.pg.name }}
+    tier: database
+spec:
+  selector:
+    app: {{ .Values.service.pg.selector.app }}
+    tier: database
+  ports:
+    - port: {{ .Values.service.pg.port }}
+      targetPort: {{ .Values.service.pg.targetPort }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.service.onebe.name }}
+spec:
+  ports:
+    - protocol: "TCP"
+      port: {{ .Values.service.onebe.port }}
+      targetPort: {{ .Values.service.onebe.targetPort }}
+  selector:
+    app: {{ .Values.service.onebe.selector.app }}
+  type: {{ .Values.service.onebe.type }}

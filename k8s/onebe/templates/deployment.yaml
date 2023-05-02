@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.pg.name }}
+  labels:
+    app: {{ .Values.deployment.pg.name }}
+    tier: database
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.pg.name }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.pg.name }}
+        tier: database
+    spec:
+      containers:
+        - name: postgresql
+          image: postgres:12
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: POSTGRES_DB
+              value: {{ .Values.deployment.pg.db }}
+            - name: POSTGRES_USER
+              value: {{ .Values.deployment.pg.username }}
+            - name: POSTGRES_PASSWORD
+              value: {{ .Values.deployment.pg.password }}
+          ports:
+            - containerPort: 5432
+              name: postgresql
+          volumeMounts:
+            - name: postgresql-claim0
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgresql-claim0
+          persistentVolumeClaim:
+            claimName: postgresql-claim0
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.onebe.name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.onebe.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.onebe.name }}
+    spec:
+      containers:
+        - image: {{ .Values.image.repository }}
+          name: {{ .Values.deployment.onebe.name }}
+          command:
+            [
+              "java",
+              "-jar",
+              "-Dspring.profiles.active=k8s",
+              "projectone-0.0.1-SNAPSHOT.jar",
+            ]
+
+          ports:
+            - containerPort: {{ .Values.deployment.onebe.containerPort }}
+
